@@ -1,23 +1,52 @@
-import logo from './logo.svg';
+import React from 'react';
 import './App.css';
+import Header from './components/Header';
+import SearchBar from './components/SearchBar';
+import UserList from './components/UserList';
+import { useUsers } from './hooks/useUsers';
 
 function App() {
+  const {
+    users,
+    loading,
+    error,
+    searchTerm,
+    setSearchTerm,
+    selectedCity,
+    setSelectedCity,
+    selectedCompany,
+    setSelectedCompany,
+    filterOptions,
+    clearAllFilters,
+    hasActiveFilters,
+    totalUsers,
+    filteredCount,
+  } = useUsers();
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <Header />
+
+      <main className="main-content">
+        <div className="container">
+          <SearchBar
+            searchTerm={searchTerm}
+            onSearchChange={setSearchTerm}
+            selectedCity={selectedCity}
+            onCityChange={setSelectedCity}
+            selectedCompany={selectedCompany}
+            onCompanyChange={setSelectedCompany}
+            cities={filterOptions.cities}
+            companies={filterOptions.companies}
+            onClearFilters={clearAllFilters}
+            hasActiveFilters={hasActiveFilters}
+            filteredCount={filteredCount}
+            totalUsers={totalUsers}
+          />
+
+          <UserList users={users} loading={loading} error={error} />
+        </div>
+      </main>
     </div>
   );
 }
