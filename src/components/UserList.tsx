@@ -28,7 +28,6 @@ const UserList: React.FC<UserListProps> = ({
   retryFetch,
   hasActiveFilters,
 }) => {
-  // Loading state
   if (loading) {
     return (
       <Box
@@ -52,7 +51,6 @@ const UserList: React.FC<UserListProps> = ({
     );
   }
 
-  // Error state
   if (error) {
     return (
       <Paper elevation={2} sx={{ p: 4, textAlign: 'center' }}>
@@ -82,7 +80,6 @@ const UserList: React.FC<UserListProps> = ({
     );
   }
 
-  // No users found (either no data or filtered out)
   if (users.length === 0) {
     return (
       <Paper elevation={1} sx={{ p: 6, textAlign: 'center' }}>
@@ -104,7 +101,6 @@ const UserList: React.FC<UserListProps> = ({
     );
   }
 
-  // Success state - display users
   return (
     <Container maxWidth="lg" sx={{ px: 0 }}>
       <Grid container spacing={3}>
@@ -115,14 +111,6 @@ const UserList: React.FC<UserListProps> = ({
         ))}
       </Grid>
 
-      {/* Footer with results summary */}
-      <Box sx={{ mt: 4, textAlign: 'center' }}>
-        <Typography variant="body2" color="text.secondary">
-          {users.length === 1
-            ? '1 user displayed'
-            : `${users.length} users displayed`}
-        </Typography>
-      </Box>
     </Container>
   );
 };

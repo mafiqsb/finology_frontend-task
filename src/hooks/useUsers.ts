@@ -26,13 +26,11 @@ const useUsers = () => {
     loadUsers();
   }, []);
 
-  // Filter options for dropdowns
   const filterOptions = {
     cities: Array.from(new Set(users.map((u) => u.address.city))).sort(),
     companies: Array.from(new Set(users.map((u) => u.company.name))).sort(),
   };
 
-  // Filtered users
   const filteredUsers = users.filter((user) => {
     const matchesSearch = user.name
       .toLowerCase()
@@ -43,17 +41,14 @@ const useUsers = () => {
     return matchesSearch && matchesCity && matchesCompany;
   });
 
-  // Clear all filters
   const clearAllFilters = () => {
     setSearchTerm('');
     setSelectedCity('');
     setSelectedCompany('');
   };
 
-  // Check if any filters are active
   const hasActiveFilters = !!searchTerm || !!selectedCity || !!selectedCompany;
 
-  // Retry function for error recovery
   const retryFetch = async () => {
     setError(null);
     setLoading(true);

@@ -9,14 +9,14 @@ import {
 import Header from './components/Header';
 import SearchBar from './components/SearchBar';
 import UserList from './components/UserList';
+import Footer from './components/Footer';
 import useUsers from './hooks/useUsers';
 
-// Create a modern theme
 const theme = createTheme({
   palette: {
     primary: {
-      main: '#1976d2',
-      light: '#42a5f5',
+      main: '#0066cc',
+      light: '#00ccff',
       dark: '#1565c0',
     },
     secondary: {
@@ -90,10 +90,17 @@ const App: React.FC = () => {
   return (
     <ThemeProvider theme={theme}>
       <CssBaseline />
-      <Box sx={{ minHeight: '100vh', backgroundColor: 'background.default' }}>
+      <Box
+        sx={{
+          minHeight: '100vh',
+          backgroundColor: 'background.default',
+          display: 'flex',
+          flexDirection: 'column',
+        }}
+      >
         <Header />
 
-        <Container maxWidth="lg" sx={{ py: 4 }}>
+        <Container maxWidth="lg" sx={{ py: 4, flex: 1 }}>
           <SearchBar
             value={searchTerm}
             onChange={setSearchTerm}
@@ -116,6 +123,8 @@ const App: React.FC = () => {
             hasActiveFilters={hasActiveFilters}
           />
         </Container>
+
+        <Footer />
       </Box>
     </ThemeProvider>
   );

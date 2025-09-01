@@ -3,7 +3,6 @@ import {
   Card,
   CardContent,
   CardHeader,
-  Avatar,
   Typography,
   Box,
   IconButton,
@@ -17,7 +16,6 @@ import {
   Language,
   Business,
   LocationOn,
-  Person,
 } from '@mui/icons-material';
 import { User } from '../services/userService';
 
@@ -40,14 +38,7 @@ const UserCard: React.FC<UserCardProps> = ({ user }) => {
     window.location.href = `tel:+${cleanPhone}`;
   };
 
-  const getInitials = (name: string) => {
-    return name
-      .split(' ')
-      .map((part) => part.charAt(0))
-      .join('')
-      .toUpperCase()
-      .slice(0, 2);
-  };
+
 
   const formatAddress = () => {
     const { street, suite, city, zipcode } = user.address;
@@ -67,19 +58,7 @@ const UserCard: React.FC<UserCardProps> = ({ user }) => {
       }}
     >
       <CardHeader
-        avatar={
-          <Avatar
-            sx={{
-              bgcolor: 'primary.main',
-              width: 56,
-              height: 56,
-              fontSize: '1.2rem',
-              fontWeight: 'bold',
-            }}
-          >
-            {getInitials(user.name)}
-          </Avatar>
-        }
+
         title={
           <Typography variant="h6" fontWeight="bold" color="primary">
             {user.name}
@@ -89,7 +68,6 @@ const UserCard: React.FC<UserCardProps> = ({ user }) => {
           <Box
             sx={{ display: 'flex', alignItems: 'center', gap: 0.5, mt: 0.5 }}
           >
-            <Person fontSize="small" color="action" />
             <Typography variant="body2" color="text.secondary">
               @{user.username}
             </Typography>
@@ -108,7 +86,6 @@ const UserCard: React.FC<UserCardProps> = ({ user }) => {
 
       <CardContent sx={{ pt: 0 }}>
         <Stack spacing={2}>
-          {/* Contact Information */}
           <Box>
             <Typography variant="subtitle2" color="primary" gutterBottom>
               Contact Information
@@ -181,7 +158,6 @@ const UserCard: React.FC<UserCardProps> = ({ user }) => {
 
           <Divider />
 
-          {/* Location & Company */}
           <Box>
             <Typography variant="subtitle2" color="primary" gutterBottom>
               Location & Company

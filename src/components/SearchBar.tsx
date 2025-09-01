@@ -18,7 +18,6 @@ import {
   Clear,
   LocationOn,
   Business,
-  FilterList,
 } from '@mui/icons-material';
 
 interface SearchBarProps {
@@ -54,14 +53,12 @@ const SearchBar: React.FC<SearchBarProps> = ({
   return (
     <Paper elevation={2} sx={{ p: 3, mb: 3 }}>
       <Box sx={{ display: 'flex', alignItems: 'center', gap: 1, mb: 2 }}>
-        <FilterList color="primary" />
         <Typography variant="h6" color="primary">
           Search & Filter
         </Typography>
       </Box>
 
       <Grid container spacing={2} alignItems="center">
-        {/* Search Input */}
         <Grid size={{ xs: 12, md: 4 }}>
           <TextField
             fullWidth
@@ -79,7 +76,6 @@ const SearchBar: React.FC<SearchBarProps> = ({
           />
         </Grid>
 
-        {/* City Filter */}
         <Grid size={{ xs: 12, md: 3 }}>
           <FormControl fullWidth variant="outlined">
             <InputLabel>City</InputLabel>
@@ -105,7 +101,6 @@ const SearchBar: React.FC<SearchBarProps> = ({
           </FormControl>
         </Grid>
 
-        {/* Company Filter */}
         <Grid size={{ xs: 12, md: 3 }}>
           <FormControl fullWidth variant="outlined">
             <InputLabel>Company</InputLabel>
@@ -131,7 +126,6 @@ const SearchBar: React.FC<SearchBarProps> = ({
           </FormControl>
         </Grid>
 
-        {/* Clear Filters Button */}
         <Grid size={{ xs: 12, md: 2 }}>
           <Button
             fullWidth
@@ -147,7 +141,6 @@ const SearchBar: React.FC<SearchBarProps> = ({
         </Grid>
       </Grid>
 
-      {/* Active Filters and Results Count */}
       <Box
         sx={{
           mt: 2,
@@ -187,10 +180,6 @@ const SearchBar: React.FC<SearchBarProps> = ({
             />
           )}
         </Box>
-
-        <Typography variant="body2" color="text.secondary">
-          Showing {filteredCount} of {totalUsers} users
-        </Typography>
       </Box>
     </Paper>
   );
