@@ -1,16 +1,17 @@
 import React from 'react';
-import './Header.css';
+import AppBar from '@mui/material/AppBar';
+import Toolbar from '@mui/material/Toolbar';
+import Typography from '@mui/material/Typography';
 
 const Header = () => {
   return (
-    <header className="app-header">
-      <div className="header-content">
-        <h1 className="app-title">User Directory</h1>
-        <p className="app-subtitle">
-          Discover and connect with users from around the world
-        </p>
-      </div>
-    </header>
+    <AppBar position="static">
+      <Toolbar>
+        <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
+          User Directory
+        </Typography>
+      </Toolbar>
+    </AppBar>
   );
 };
 

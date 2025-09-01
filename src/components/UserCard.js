@@ -1,9 +1,17 @@
 import React from 'react';
-import './UserCard.css';
+import Card from '@mui/material/Card';
+import CardContent from '@mui/material/CardContent';
+import CardHeader from '@mui/material/CardHeader';
+import Avatar from '@mui/material/Avatar';
+import Typography from '@mui/material/Typography';
+import EmailIcon from '@mui/icons-material/Email';
+import PhoneIcon from '@mui/icons-material/Phone';
+import LanguageIcon from '@mui/icons-material/Language';
+import BusinessIcon from '@mui/icons-material/Business';
+import LocationOnIcon from '@mui/icons-material/LocationOn';
 
 const UserCard = ({ user }) => {
   const handleWebsiteClick = (website) => {
-    // Ensure the website has a protocol
     const url = website.startsWith('http') ? website : `https://${website}`;
     window.open(url, '_blank', 'noopener,noreferrer');
   };
@@ -17,68 +25,80 @@ const UserCard = ({ user }) => {
   };
 
   return (
-    <div className="user-card">
-      <div className="user-header">
-        <div className="user-avatar">{user.name.charAt(0).toUpperCase()}</div>
-        <div className="user-basic-info">
-          <h3 className="user-name">{user.name}</h3>
-          <p className="user-username">@{user.username}</p>
-        </div>
-      </div>
-
-      <div className="user-details">
-        <div className="detail-item">
-          <span className="detail-icon">✉️</span>
+    <Card sx={{ minWidth: 275, mb: 2 }}>
+      <CardHeader
+        avatar={<Avatar>{user.name.charAt(0).toUpperCase()}</Avatar>}
+        title={user.name}
+        subheader={`@${user.username}`}
+      />
+      <CardContent>
+        <Typography
+          variant="body2"
+          color="text.secondary"
+          sx={{ display: 'flex', alignItems: 'center', mb: 1 }}
+        >
+          <LocationOnIcon fontSize="small" sx={{ mr: 1 }} />
+          {user.address.city}, {user.address.zipcode}
+        </Typography>
+        <Typography
+          variant="body2"
+          color="text.secondary"
+          sx={{ display: 'flex', alignItems: 'center', mb: 1 }}
+        >
+          <BusinessIcon fontSize="small" sx={{ mr: 1 }} />
+          {user.company.name}
+        </Typography>
+        <Typography
+          variant="body2"
+          color="text.secondary"
+          sx={{ display: 'flex', alignItems: 'center', mb: 1 }}
+        >
+          <EmailIcon fontSize="small" sx={{ mr: 1 }} />
           <span
-            className="detail-text clickable"
+            style={{ cursor: 'pointer', color: '#1976d2' }}
             onClick={() => handleEmailClick(user.email)}
             title="Send email"
           >
             {user.email}
           </span>
-        </div>
-
-        <div className="detail-item">
-          <span className="detail-icon">📍</span>
-          <span className="detail-text">
-            {user.address.city}, {user.address.zipcode}
-          </span>
-        </div>
-
-        <div className="detail-item">
-          <span className="detail-icon">🏢</span>
-          <span className="detail-text">{user.company.name}</span>
-        </div>
-
-        <div className="detail-item">
-          <span className="detail-icon">📞</span>
+        </Typography>
+        <Typography
+          variant="body2"
+          color="text.secondary"
+          sx={{ display: 'flex', alignItems: 'center', mb: 1 }}
+        >
+          <PhoneIcon fontSize="small" sx={{ mr: 1 }} />
           <span
-            className="detail-text clickable"
+            style={{ cursor: 'pointer', color: '#1976d2' }}
             onClick={() => handlePhoneClick(user.phone)}
             title="Call phone"
           >
             {user.phone}
           </span>
-        </div>
-
-        <div className="detail-item">
-          <span className="detail-icon">🌐</span>
+        </Typography>
+        <Typography
+          variant="body2"
+          color="text.secondary"
+          sx={{ display: 'flex', alignItems: 'center', mb: 1 }}
+        >
+          <LanguageIcon fontSize="small" sx={{ mr: 1 }} />
           <span
-            className="detail-text clickable"
+            style={{ cursor: 'pointer', color: '#1976d2' }}
             onClick={() => handleWebsiteClick(user.website)}
             title="Visit website"
           >
             {user.website}
           </span>
-        </div>
-      </div>
-
-      <div className="user-footer">
-        <span className="company-catchphrase">
+        </Typography>
+        <Typography
+          variant="caption"
+          color="text.secondary"
+          sx={{ mt: 2, fontStyle: 'italic' }}
+        >
           "{user.company.catchPhrase}"
-        </span>
-      </div>
-    </div>
+        </Typography>
+      </CardContent>
+    </Card>
   );
 };
 

@@ -1,6 +1,8 @@
 import React from 'react';
 import UserCard from './UserCard';
-import './UserList.css';
+import Container from '@mui/material/Container';
+import Grid from '@mui/material/Grid';
+// import './UserList.css';
 
 const UserList = ({ users, loading, error }) => {
   if (loading) {
@@ -41,11 +43,15 @@ const UserList = ({ users, loading, error }) => {
   }
 
   return (
-    <div className="user-list">
-      {users.map((user) => (
-        <UserCard key={user.id} user={user} />
-      ))}
-    </div>
+    <Container sx={{ mt: 4 }}>
+      <Grid container spacing={2}>
+        {users.map((user) => (
+          <Grid item xs={12} sm={6} md={4} key={user.id}>
+            <UserCard user={user} />
+          </Grid>
+        ))}
+      </Grid>
+    </Container>
   );
 };
 
